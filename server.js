@@ -28,8 +28,11 @@ app.prepare().then(() => {
   router.get('/test', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
 
-      
-      offlineToken = sql.getOfflineToken(ctx.query.shop)
+      offlineToken = sql.getOfflineToken(ctx.query.shop).then(function(value) {
+        console.log('DISDATBITCHMOTHAFUCKA', value);
+      }).catch(function(err) {
+        console.log('Caught an error!', err);
+      })
 
       console.log("this is the token itself");
       console.log(offlineToken);
@@ -37,7 +40,7 @@ app.prepare().then(() => {
       console.log(sql.getOfflineToken)
       console.log('above is the token itself');
 
-      axios.post('/admin/api/2020-01/customers.json')
+      /*axios.post('/admin/api/2020-01/customers.json')
       .then(function (response) {
         console.log(response);
       })
@@ -53,7 +56,7 @@ app.prepare().then(() => {
       ctx.body = {
         status: 'Failed',
         data: "bad?"
-      };
+      };*/
     }
   })
 
