@@ -86,7 +86,6 @@ app.prepare().then(() => {
   server.use(verifyRequest());
   server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
-    console.log(ctx)
     ctx.respond = false;
     ctx.res.statusCode = 200;
     return
