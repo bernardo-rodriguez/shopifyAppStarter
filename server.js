@@ -72,7 +72,7 @@ app.prepare().then(() => {
         console.log('this should be new access token');
         console.log(accessToken);
         console.log('that should be new access token')
-        sql.merchantAuth2(shop, accessToken)
+        sql.merchantAuth(shop, accessToken)
 
         //funcs.requestCustomers(ctx.session);
         
