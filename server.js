@@ -25,8 +25,12 @@ app.prepare().then(() => {
   server.use(session({ secure: true, sameSite: 'none' }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
-  router.get('/test', async (ctx) => {
+  router.get('/testing', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
+
+      console.log(ctx.query);
+      console.log(ctx);
+      //offlineToken = sql.getOfflineToken(ctx.session)
 
       axios.post('/admin/api/2020-01/customers.json')
       .then(function (response) {
@@ -38,12 +42,12 @@ app.prepare().then(() => {
 
       ctx.body = {
         status: 'Success',
-        data: "Customer Created"
+        data: ctx
       };
     } else {
       ctx.body = {
         status: 'Failed',
-        data: "Not authenticated"
+        data: ctx
       };
     }
   })
@@ -69,13 +73,8 @@ app.prepare().then(() => {
           return
         }
 
-        console.log('this should be new access token');
-        console.log(accessToken);
-        console.log('that should be new access token')
         sql.merchantAuth(shop, accessToken)
 
-        //funcs.requestCustomers(ctx.session);
-        
         ctx.cookies.set('shopOrigin', shop, {
           httpOnly: false,
           secure: true,
