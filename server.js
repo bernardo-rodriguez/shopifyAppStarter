@@ -25,7 +25,7 @@ app.prepare().then(() => {
   server.use(session({ secure: true, sameSite: 'none' }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
-  router.get('/testing', async (ctx) => {
+  router.get('/test', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
 
       console.log(ctx.query);
