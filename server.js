@@ -69,6 +69,7 @@ app.prepare().then(() => {
           return
         }
 
+        console.log(accessToken);
         sql.merchantAuth(shop, accessToken)
 
         //funcs.requestCustomers(ctx.session);
