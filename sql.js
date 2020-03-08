@@ -2,17 +2,9 @@ require("openssl")
 
 const { Client } = require('pg');
 
-/*const client = new Client({
-    user: 'bernardorodriguez',
-    host: 'postgresql-shallow-64185',
-    database: 'merchants',
-    password: '27december98',
-    port: 5432,
-    //ssl: false
-});*/
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: false,
+    ssl: true,
     });
 
 client.connect();
