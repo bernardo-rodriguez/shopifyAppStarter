@@ -28,7 +28,7 @@ select * from merchants
 
 module.exports = {
     merchantAuth:  function(shop, accessToken) {
-        client.query("insert into merchant_entries (shop_name, offline_token) values ($1, $2) ON CONFLICT (shop_name) DO UPDATE SET offline_token = $2", [shop, accessToken], (err, res) => {
+        client.query("insert into merchant_entries (shop_name, offline_token) values ($1, $2) ON CONFLICT (shop_name) DO UPDATE SET offline_token = 'sassa'", [shop, accessToken], (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
                 console.log(JSON.stringify(row));
