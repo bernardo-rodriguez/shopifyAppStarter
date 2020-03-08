@@ -2,14 +2,18 @@ require("openssl")
 
 const { Client } = require('pg');
 
-const client = new Client({
+/*const client = new Client({
     user: 'bernardorodriguez',
-    host: 'localhost',
+    host: 'postgresql-shallow-64185',
     database: 'merchants',
     password: '27december98',
     port: 5432,
     //ssl: false
-});
+});*/
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: false,
+    });
 
 client.connect();
 
@@ -20,11 +24,14 @@ insert into merchants values ('thisismyshop', 'offline12345678900987654321', 'on
 select * from merchants
 */
 
-
-client.query("select * from merchant_entries", (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
+module.exports = {
+    Select1:  function(query) {
+        client.query("select * from merchant_entries", (err, res) => {
+            if (err) throw err;
+            for (let row of res.rows) {
+                console.log(JSON.stringify(row));
+            }
+            client.end();
+        });
+    }
+}
