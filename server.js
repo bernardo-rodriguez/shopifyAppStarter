@@ -29,7 +29,9 @@ app.prepare().then(() => {
     if (funcs.validateSignature(ctx.query)) {
 
       offlineToken = sql.getOfflineToken(ctx.query.shop).then(function(value) {
-        console.log(value[0])
+        console.log('below is token')
+        console.log(value[0]['offline_token'])
+        console.log('above it is')
       }).catch(function(err) {
         console.log('Caught an error!', err);
       })
