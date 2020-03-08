@@ -7,7 +7,6 @@ const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
 module.exports = {
     validateSignature:  function(query) {
-        console.log(query)
         var parameters = [];
         for (var key in query) {
             if (key != 'signature') {

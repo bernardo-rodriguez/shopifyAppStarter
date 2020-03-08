@@ -24,18 +24,19 @@ module.exports = {
           })
     },
 
-    getOfflineToken:  function(shop, accessToken) {
+    getOfflineToken:  function(shop) {
         pool.connect((err, client, release) => {
             if (err) {
               console.log(err)
               return console.error('Error acquiring client', err.stack)
             }
-             client.query("insert into merchant_entries (shop_name, offline_token) values ($1, $2) ON CONFLICT (shop_name) DO UPDATE SET offline_token = $2", [shop, accessToken], (err, result) => {
+              client.query("select offline_token from merchant_entries where shop_name = $1", [shop], (err, result) => {
               release()
               if (err) {
                 return console.error('Error executing query', err.stack)
               }
               console.log(result.rows)
+              return result
             })
           })
     }

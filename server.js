@@ -28,9 +28,9 @@ app.prepare().then(() => {
   router.get('/test', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
 
-      console.log(ctx.query);
-      console.log(ctx);
-      //offlineToken = sql.getOfflineToken(ctx.session)
+      offlineToken = sql.getOfflineToken(ctx.query.shop)
+
+      console.log(offlineToken);
 
       axios.post('/admin/api/2020-01/customers.json')
       .then(function (response) {
@@ -42,12 +42,12 @@ app.prepare().then(() => {
 
       ctx.body = {
         status: 'Success',
-        data: ctx
+        data: "good?"
       };
     } else {
       ctx.body = {
         status: 'Failed',
-        data: ctx
+        data: "bad?"
       };
     }
   })
