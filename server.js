@@ -48,6 +48,11 @@ app.prepare().then(() => {
     }
   })
 
+  router.get('/test', async (ctx) => {
+    console.log("WHATSGOINGONBRO");
+  }
+  );
+
   server.use(router.routes());
   server.use(router.allowedMethods());
 
