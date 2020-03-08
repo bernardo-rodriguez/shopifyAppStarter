@@ -28,9 +28,14 @@ app.prepare().then(() => {
   router.get('/test', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
 
+      
       offlineToken = sql.getOfflineToken(ctx.query.shop)
 
+      console.log("this is the token itself");
       console.log(offlineToken);
+      console.log("this is asynch function")
+      console.log(sql.getOfflineToken)
+      console.log('above is the token itself');
 
       axios.post('/admin/api/2020-01/customers.json')
       .then(function (response) {

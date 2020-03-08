@@ -24,7 +24,7 @@ module.exports = {
           })
     },
 
-    getOfflineToken:  function(shop) {
+    getOfflineToken:  async function(shop) {
         pool.connect((err, client, release) => {
             if (err) {
               console.log(err)
