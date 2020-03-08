@@ -1,6 +1,6 @@
 require('isomorphic-fetch');
 var funcs = require('./functions.js');
-var sql = require('./sql.js');
+//var sql = require('./sql.js');
 const dotenv = require('dotenv');
 const Koa = require('koa');
 const Router = require('koa-router');

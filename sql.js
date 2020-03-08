@@ -21,7 +21,7 @@ select * from merchants
 */
 
 
-client.query("select * from merchants", (err, res) => {
+client.query("select * from merchant_entries", (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
