@@ -48,12 +48,6 @@ app.prepare().then(() => {
     }
   })
 
-  router.get('/data', async (ctx) => {
-    console.log("WHATSGOINGONBRO");
-    sql.Select1()
-  }
-  );
-
   server.use(router.routes());
   server.use(router.allowedMethods());
 
@@ -75,11 +69,7 @@ app.prepare().then(() => {
           return
         }
 
-        console.log('before_insert')
-
         sql.merchantAuth(shop, accessToken)
-
-        console.log('after_insert')
 
         //funcs.requestCustomers(ctx.session);
         
