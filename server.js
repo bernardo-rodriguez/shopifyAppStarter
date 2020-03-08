@@ -1,5 +1,6 @@
 require('isomorphic-fetch');
 var funcs = require('./functions.js');
+var sql = require('./sql.js');
 const dotenv = require('dotenv');
 const Koa = require('koa');
 const Router = require('koa-router');
@@ -9,7 +10,6 @@ const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
 const axios = require('axios');
 var sleep = require('sleep');
-
 
 dotenv.config();
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -86,6 +86,7 @@ app.prepare().then(() => {
   server.use(verifyRequest());
   server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
+    console.log(ctx)
     ctx.respond = false;
     ctx.res.statusCode = 200;
     return

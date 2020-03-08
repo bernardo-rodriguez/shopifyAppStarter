@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node server.js",
+    "db": "node sql.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js"
   },
@@ -28,6 +29,8 @@
     "koa-router": "^8.0.8",
     "koa-session": "^5.13.1",
     "next": "^9.2.2",
+    "openssl": "^1.1.0",
+    "pg": "^7.18.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "request": "^2.81.0",
