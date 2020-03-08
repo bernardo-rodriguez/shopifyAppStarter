@@ -34,12 +34,6 @@ app.prepare().then(() => {
         console.log('Caught an error!', err);
       })
 
-      console.log("this is the token itself");
-      console.log(offlineToken);
-      console.log("this is asynch function")
-      console.log(sql.getOfflineToken)
-      console.log('above is the token itself');
-
       /*axios.post('/admin/api/2020-01/customers.json')
       .then(function (response) {
         console.log(response);

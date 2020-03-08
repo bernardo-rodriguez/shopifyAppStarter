@@ -25,19 +25,23 @@ module.exports = {
     },
 
     getOfflineToken:  async function(shop) {
+        return new Promise((resolve, reject) => {
         pool.connect((err, client, release) => {
             if (err) {
               console.log(err)
-              return console.error('Error acquiring client', err.stack)
+              return reject(err)
             }
               client.query("select offline_token from merchant_entries where shop_name = $1", [shop], (err, result) => {
               release()
               if (err) {
-                return console.error('Error executing query', err.stack)
+                return reject(err)
               }
+              console.log('below is result');
+              console.log(result)
               console.log(result.rows)
-              return result
+              resolve(result)
             })
           })
+        })
     }
 }
