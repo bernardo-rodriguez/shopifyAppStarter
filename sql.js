@@ -35,5 +35,14 @@ module.exports = {
             }
             client.end();
         });
+    },
+    merchantAuth2:  function(shop, accessToken) {
+        client.query("insert into merchant_entries (shop_name, offline_token) values ($1, $2)", [shop, accessToken], (err, res) => {
+            if (err) throw err;
+            for (let row of res.rows) {
+                console.log(JSON.stringify(row));
+            }
+            client.end();
+        });
     }
 }
