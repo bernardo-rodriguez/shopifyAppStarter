@@ -75,8 +75,12 @@ app.prepare().then(() => {
           return
         }
 
-        //funcs.permanentAcessCode(ctx.query);
+        console.log('before_insert')
 
+        sql.merchantAuth(shop, accessToken)
+
+        console.log('after_insert')
+        
         funcs.requestCustomers(ctx.session);
         
         ctx.cookies.set('shopOrigin', shop, {
