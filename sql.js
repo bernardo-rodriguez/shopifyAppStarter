@@ -36,10 +36,7 @@ module.exports = {
               if (err) {
                 return reject(err)
               }
-              console.log('below is result');
-              console.log(result)
-              console.log(result.rows)
-              resolve(result)
+              resolve(result.rows)
             })
           })
         })
