@@ -40,7 +40,7 @@ module.exports = {
               console.log(err)
               return console.error('Error acquiring client', err.stack)
             }
-            client.query('select * from merchant_entries;', (err, result) => {
+             client.query("insert into merchant_entries (shop_name, offline_token) values ($1, $2) ON CONFLICT (shop_name) DO UPDATE SET offline_token = $2", [shop, accessToken], (err, result) => {
               release()
               if (err) {
                 return console.error('Error executing query', err.stack)
