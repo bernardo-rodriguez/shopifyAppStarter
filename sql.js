@@ -28,7 +28,7 @@ module.exports = {
     },
     merchantAuth:  function(shop, accessToken) {
         console.log('BELOW IM INSERTING SOMETHING');
-        client.query("insert into merchant_entries ('shop_name', 'offline_token') values ($1, $2)", [shop, accessToken], (err, res) => {
+        client.query("insert into merchant_entries (shop_name, offline_token) values ($1, $2)", [shop, accessToken], (err, res) => {
             console.log(err)
             if (err) throw err;
             for (let row of res.rows) {
