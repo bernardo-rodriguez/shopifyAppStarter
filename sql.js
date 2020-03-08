@@ -4,23 +4,17 @@ const { Pool, Client } = require('pg');
 
 const pool = new Pool()
 
-pool.connect((err, client, release) => {
-    if (err) {
-      return console.error('Error acquiring client', err.stack)
-    }
-    client.query('select * from merchant_entries;', (err, result) => {
-      release()
-      if (err) {
-        return console.error('Error executing query', err.stack)
-      }
-      console.log(result.rows)
-    })
-  })
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+})
 
-/*const client = new Client({
+/*
+const client = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
 });*/
+
 
 // const client = new Client({
 //     user: 'bernardorodriguez',
@@ -45,6 +39,7 @@ module.exports = {
     merchantAuth:  function(shop, accessToken) {
         pool.connect((err, client, release) => {
             if (err) {
+              console.log(err)
               return console.error('Error acquiring client', err.stack)
             }
             client.query('select * from merchant_entries;', (err, result) => {
