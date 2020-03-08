@@ -80,8 +80,8 @@ app.prepare().then(() => {
         sql.merchantAuth(shop, accessToken)
 
         console.log('after_insert')
-        
-        funcs.requestCustomers(ctx.session);
+
+        //funcs.requestCustomers(ctx.session);
         
         ctx.cookies.set('shopOrigin', shop, {
           httpOnly: false,
