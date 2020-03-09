@@ -37,13 +37,13 @@ app.prepare().then(() => {
         console.log(customers);
         return {
           status: 'Success',
-          data: value
+          data: customers
         };
       }).catch(function (err) {
         console.log('Caught an error!', err);
         return {
           status: 'Failed',
-          data: err
+          data: customers
         }
       })
 
