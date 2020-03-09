@@ -32,7 +32,7 @@ app.prepare().then(() => {
     if (funcs.validateSignature(ctx.query)) {
 
       sql.getOfflineToken(ctx.query.shop).then(function (value) {
-        customers = funcs.requestCustomers(ctx.query.shop, value[0['offline_token']])
+        customers = funcs.requestCustomers(ctx.query.shop, value[0]['offline_token'])
         console.log('this is the return from request customers');
         console.log(customers);
         ctx.body = {
