@@ -22,37 +22,36 @@ const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
-  server.use(session({ secure: true, sameSite: 'none' }, server));
+  server.use(session({
+    secure: true,
+    sameSite: 'none'
+  }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
   router.get('/test', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
 
-      offlineToken = sql.getOfflineToken(ctx.query.shop).then(function(value) {
-        console.log('below is token')
-        console.log(value[0]['offline_token'])
-        console.log('above it is')
-      }).catch(function(err) {
+      sql.getOfflineToken(ctx.query.shop).then(function (value) {
+        customers = funcs.requestCustomers(ctx.query.shop, value[0['offline_token']])
+        console.log('this is the return from request customers');
+        console.log(customers);
+        ctx.body = {
+          status: 'Success',
+          data: "did we retrieve the customers?"
+        };
+      }).catch(function (err) {
         console.log('Caught an error!', err);
+        ctx.body = {
+          status: 'Failed',
+          data: "Error fetching access token"
+        };
       })
 
-      /*axios.post('/admin/api/2020-01/customers.json')
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-      ctx.body = {
-        status: 'Success',
-        data: "good?"
-      };
     } else {
       ctx.body = {
         status: 'Failed',
-        data: "bad?"
-      };*/
+        data: "Error validating signature"
+      };
     }
   })
 
@@ -66,7 +65,10 @@ app.prepare().then(() => {
       scopes: ['read_products', 'read_customers'],
       accessMode: 'offline',
       afterAuth(ctx) {
-        const { shop, accessToken } = ctx.session;
+        const {
+          shop,
+          accessToken
+        } = ctx.session;
 
         if (!funcs.validateHMAC(ctx.query)) {
           ctx.body = {

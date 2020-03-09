@@ -51,17 +51,20 @@ module.exports = {
         });
     },
 
-    requestCustomers:  function(session) {
-        console.log(session)
-        
-        axios.post("https://" + session.shop + '/admin/api/2020-01/customers.json', {
-            headers: { 'X-Shopify-Access-Token': session.accessToken }
+    requestCustomers:  function(shop, access_token) {
+        console.log('request for customers');
+        console.log(shop, access_token);
+
+        axios.post("https://" + shop + '/admin/api/2020-01/customers.json', {
+            headers: { 'X-Shopify-Access-Token': access_token }
         })
         .then(function (response) {
             console.log(response);
+            return response;
         })
         .catch(function (error) {
             console.log(error);
+            return response;
         });
 
     }
