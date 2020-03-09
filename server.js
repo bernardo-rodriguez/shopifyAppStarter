@@ -31,20 +31,20 @@ app.prepare().then(() => {
   router.get('/test', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
 
-      sql.getOfflineToken(ctx.query.shop).then(function (value) {
+      ctx.body = await sql.getOfflineToken(ctx.query.shop).then(function (value) {
         customers = funcs.requestCustomers(ctx.query.shop, value[0]['offline_token'])
         console.log('this is the return from request customers');
         console.log(customers);
-        ctx.body = {
+        return {
           status: 'Success',
           data: value
         };
       }).catch(function (err) {
         console.log('Caught an error!', err);
-        ctx.body = {
+        return {
           status: 'Failed',
           data: err
-        };
+        }
       })
 
     } else {
