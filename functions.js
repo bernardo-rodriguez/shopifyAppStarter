@@ -51,7 +51,7 @@ module.exports = {
         });
     },
 
-    requestCustomers:  function(shop, access_token) {
+    requestCustomers: async function(shop, access_token) {
         console.log('request for customers');
         console.log(shop, access_token);
 
