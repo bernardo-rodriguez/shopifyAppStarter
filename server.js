@@ -28,25 +28,21 @@ app.prepare().then(() => {
   }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
-  router.get('/test', async (ctx) => {
+  router.get('/get_customers', async (ctx) => {
     if (funcs.validateSignature(ctx.query)) {
-
-      ctx.body = await sql.getOfflineToken(ctx.query.shop).then(function (value) {
-        customers = await funcs.requestCustomers(ctx.query.shop, value[0]['offline_token'])
-        console.log('this is the return from request customers');
-        console.log(customers);
-        return {
+      try {
+        var offline_token = await sql.getOfflineToken(ctx.query.shop)
+        var response = await funcs.requestCustomers(ctx.query.shop, offline_token[0]['offline_token'])
+        ctx.body = {
           status: 'Success',
-          data: customers
-        };
-      }).catch(function (err) {
-        console.log('Caught an error!', err);
-        return {
-          status: 'Failed',
-          data: err
+          data: response.data
         }
-      })
-
+      } catch (e){
+        ctx.body = {
+          status: "Failed",
+          data: e
+        }
+      }
     } else {
       ctx.body = {
         status: 'Failed',
@@ -62,7 +58,7 @@ app.prepare().then(() => {
     createShopifyAuth({
       apiKey: SHOPIFY_API_KEY,
       secret: SHOPIFY_API_SECRET_KEY,
-      scopes: ['read_products', 'read_customers'],
+      scopes: ['read_customers', 'write_customers'],
       accessMode: 'offline',
       afterAuth(ctx) {
         const {

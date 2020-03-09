@@ -34,10 +34,7 @@ module.exports = {
     },
     
     permanentAcessCode:  function(query) {
-        console.log("thisisthecode")
-        console.log(query.code)
-        console.log("yeshereiam")
-        
+        //USELESS
         axios.post("https://" + query.shop + '/admin/oauth/access_token', {
             client_id: SHOPIFY_API_KEY,
             client_secret: SHOPIFY_API_SECRET_KEY,

@@ -7,6 +7,14 @@ const pool = new Pool({
     ssl: true
 })
 
+// const pool = new Pool({
+//     user: 'bernardorodriguez',
+//     host: 'localhost',
+//     database: 'merchant',
+//     password: '27december98',
+//     port: 5432,
+//  });
+
 module.exports = {
     merchantAuth:  function(shop, accessToken) {
         pool.connect((err, client, release) => {
@@ -28,7 +36,6 @@ module.exports = {
         return new Promise((resolve, reject) => {
         pool.connect((err, client, release) => {
             if (err) {
-              console.log(err)
               return reject(err)
             }
               client.query("select offline_token from merchant_entries where shop_name = $1", [shop], (err, result) => {
