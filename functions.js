@@ -64,7 +64,7 @@ module.exports = {
         })
         .catch(function (error) {
             console.log(error);
-            return response;
+            return error;
         });
 
     }
