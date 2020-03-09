@@ -52,22 +52,17 @@ module.exports = {
     },
 
     requestCustomers: async function(shop, access_token) {
-        console.log('request for customers');
-        console.log(shop, access_token);
-
-        axios.get("https://" + shop + '/admin/api/2020-01/customers.json', {
-            headers: { 'X-Shopify-Access-Token': access_token }
-        })
-        .then(function (response) {
-            console.log(response);
-            return response;
-        })
-        .catch(function (error) {
-            console.log(error);
-            return error;
+        return new Promise((resolve, reject) => {
+            axios.get("https://" + shop + '/admin/api/2020-01/customers.json', {
+                headers: { 'X-Shopify-Access-Token': access_token }
+            })
+            .then(function (response) {
+                resolve(response);
+            })
+            .catch(function (error) {
+                return reject(error);
+            });
         });
-
     }
-
 };
 
