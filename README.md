@@ -1,3 +1,3 @@
-# customerInformation
+# shopifyAppStarter
 
-Shopify app to take extra information from a client through shopify metafields and enable him to edit that information. 
+Starter template for a Shopify app which handles storing offline access tokens in Postgresql and handles calls to return a list of customers

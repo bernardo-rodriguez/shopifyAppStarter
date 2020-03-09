@@ -8,10 +8,10 @@ const pool = new Pool({
 })
 
 // const pool = new Pool({
-//     user: 'bernardorodriguez',
+//     user: 'XXXXXX',
 //     host: 'localhost',
-//     database: 'merchant',
-//     password: '27december98',
+//     database: 'XXXXXX',
+//     password: 'XXXXXXX',
 //     port: 5432,
 //  });
 

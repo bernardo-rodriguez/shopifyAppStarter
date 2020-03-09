@@ -152,7 +152,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/bernardorodriguez/Desktop/customer-information/pages/index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! /Users/bernardorodriguez/Desktop/shopifyAppStarter/pages/index.js */"./pages/index.js");
 
 
 /***/ }),
