@@ -55,7 +55,7 @@ module.exports = {
         console.log('request for customers');
         console.log(shop, access_token);
 
-        axios.post("https://" + shop + '/admin/api/2020-01/customers.json', {
+        axios.get("https://" + shop + '/admin/api/2020-01/customers.json', {
             headers: { 'X-Shopify-Access-Token': access_token }
         })
         .then(function (response) {
