@@ -43,7 +43,7 @@ app.prepare().then(() => {
         console.log('Caught an error!', err);
         return {
           status: 'Failed',
-          data: customers
+          data: err
         }
       })
 
