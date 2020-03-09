@@ -37,13 +37,13 @@ app.prepare().then(() => {
         console.log(customers);
         ctx.body = {
           status: 'Success',
-          data: "did we retrieve the customers?"
+          data: value
         };
       }).catch(function (err) {
         console.log('Caught an error!', err);
         ctx.body = {
           status: 'Failed',
-          data: "Error fetching access token"
+          data: err
         };
       })
 
