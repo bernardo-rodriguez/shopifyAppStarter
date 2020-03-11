@@ -8,8 +8,11 @@ const next = require('next');
 const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+const bodyParser = require('koa-bodyparser');
+
 const axios = require('axios');
 var sleep = require('sleep');
+
 
 dotenv.config();
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -51,6 +54,7 @@ app.prepare().then(() => {
     }
   })
 
+  server.use(bodyParser());
   server.use(router.routes());
   server.use(router.allowedMethods());
 
